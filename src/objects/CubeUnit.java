@@ -40,7 +40,8 @@ public class CubeUnit extends Entity{
 		state = CubeState.idle;
 		RUN_SPEED = Maths.getPseudoGaussianRand()*RUN_SPEED;
 		System.out.println("Run speed = " + RUN_SPEED);
-		super.setSolid(true);
+		setSolid(true);
+		setMovable(true);
 	}
 	
 	public void work(Terrain terrain)

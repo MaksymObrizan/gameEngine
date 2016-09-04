@@ -68,6 +68,11 @@ public class AABB {
 	public void setCenter(Vector3f center) {
 		this.center = center;
 	}
+
+	public void setHalfExtent(Vector3f halfExtent) {
+		this.halfExtent = halfExtent;
+	}
+	
 	
 	
 	

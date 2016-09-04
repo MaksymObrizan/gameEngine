@@ -36,16 +36,7 @@ public class MainGameLoop {
 
 		DisplayManager.createDisplay();
 		GameObjectManager gameObjectManager = new GameObjectManager().setRenderer(new MasterRenderer()).setLoader(new Loader());
-		
-//		ModelTexture player_texture = new ModelTexture(gameObjectManager.getLoader().loadTexture("models/cube_unit_blue"));
-//
-//		player_texture.setShineDamper(100);
-//		player_texture.setReflectivity(0);
-		
-//		RawModel model1 = OBJLoader.loadObjModel("models/cube_unit", gameObjectManager.getLoader());
-//		TexturedModel staticModel1 = new TexturedModel(model1, player_texture);
-		 
-		
+
 		ModelTexture fernAtlas = new ModelTexture(gameObjectManager.getLoader().loadTexture("leafAtlas"));
 		fernAtlas.setNumberOfRows(2);
 		fernAtlas.setReflectivity(0);
@@ -65,34 +56,19 @@ public class MainGameLoop {
 		GuiRenderer guiRenderer = new GuiRenderer(gameObjectManager.getLoader());
 		
 		Random rand = new Random(67000);
-		
-		
-//		for(int i=0; i<500; i++)
-//		{
-//			float x = rand.nextFloat() * Terrain.SIZE/4 *-1;
-//			float z = rand.nextFloat() * Terrain.SIZE/4 *-1;
-//			float y = terrain.getHeightOfTerrain(x,z);
-//			int j = i/100;
-//			//entities.add(new Entity(fern, j, new Vector3f(x,y,z),0,0,0,1));
-//		}
-		
-//		CubeUnit cube = ;
-//		entities.add(cube);
-//		Player player = new Player(staticModel1, new Vector3f(-50,0,-50), 0, 0,0, 1);
-		
+				
 		Light light = new Light(new Vector3f(-50,1000,-50), new Vector3f(1,1,1));
-
-//		List<Entity> entities = new ArrayList<Entity>();
-//		entities.add(entity1);
-		
 		
 		
 		gameObjectManager.createTerrain();
 		gameObjectManager.createPlayer();
 	
-		for(int i=0; i<100;i++)
+		
+		for(int i=0; i<150;i++)
 		gameObjectManager.addCubeUnit();
 		
+		for(int i=0; i<5;i++)
+			gameObjectManager.addHouse();
 
 		Camera camera = new Camera(gameObjectManager.getPlayer());
 		

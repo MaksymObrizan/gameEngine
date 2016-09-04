@@ -16,6 +16,7 @@ public abstract class Entity extends GameObject{
 	
 	public AABB collider;
 	private boolean solid;
+	private boolean movable;
 	
 	public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
 		super(position, model);
@@ -29,6 +30,7 @@ public abstract class Entity extends GameObject{
 		this.collider = new AABB(position, new Vector3f(1,1,1));
 		this.collider.setCenter(position);
 		this.solid = false;
+		this.movable = false;
 		
 	}
 	
@@ -145,4 +147,14 @@ public abstract class Entity extends GameObject{
 	{
 		
 	}
+
+	public boolean isMovable() {
+		return movable;
+	}
+
+	public void setMovable(boolean movable) {
+		this.movable = movable;
+	}
+	
+	
 }

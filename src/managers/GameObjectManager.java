@@ -11,6 +11,7 @@ import entities.Player;
 import models.RawModel;
 import models.TexturedModel;
 import objects.CubeUnit;
+import objects.House;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
 import renderEngine.OBJLoader;
@@ -22,7 +23,7 @@ import textures.ModelTexture;
 public class GameObjectManager {
 
 	Player player;
-	Terrain terrain;
+	static Terrain terrain;
 	List<Entity> objects = new ArrayList<Entity>();
 	
 	MasterRenderer renderer;
@@ -34,6 +35,9 @@ public class GameObjectManager {
 	RawModel model1;
 	TexturedModel staticModel1;
 	 
+	ModelTexture house_texture;
+	RawModel house_model;
+	TexturedModel house_textModel;
 	//*********
 	
 	public GameObjectManager() {
@@ -138,12 +142,25 @@ public class GameObjectManager {
 	
 	public void addCubeUnit()
 	{
-		objects.add(new CubeUnit(staticModel1, new Vector3f(-50,0,-50), 0, 0,0, 1));
+		objects.add(new CubeUnit(staticModel1, new Vector3f(1,1,1), 0, 0,0, 1));
 		System.out.println("addCube");
+	}
+	
+	public void addHouse()
+	{
+		house_texture = new ModelTexture(loader.loadTexture("models/house"));
+		house_texture.setShineDamper(100);
+		house_texture.setReflectivity(0);
+		house_model = OBJLoader.loadObjModel("models/house", loader);
+		house_textModel = new TexturedModel(house_model, house_texture);
+		 		
+		objects.add(new House(house_textModel, new Vector3f(1,1,1), 0,0,0, 1,terrain));
+		System.out.println("created House");
 	}
 	
 	public int getListCount()
 	{
 		return objects.size();
 	}
+	
 }

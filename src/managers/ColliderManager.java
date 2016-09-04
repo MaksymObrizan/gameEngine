@@ -20,7 +20,7 @@ public class ColliderManager {
 		for(int i = 0; i<objectList.size();i++)
 		{
 				Entity objectA = objectList.get(i);
-				if(objectA.isSolid()){
+				if(objectA.isMovable()){
 					Entity objectB = null;
 					for(int j = 0; j<objectList.size();j++)
 					{
@@ -28,8 +28,7 @@ public class ColliderManager {
 						{
 								if(objectB == null)
 								{ 
-									objectB = objectList.get(j);
-	//								System.out.println("object get");
+										objectB = objectList.get(j);
 								}
 								
 								Vector3f lenght1 = getLength(objectB.getCollider().getCenter(), objectA.getPosition());
@@ -42,13 +41,14 @@ public class ColliderManager {
 								
 						}
 					} // end of for(j)
-					if(getLength(objectB.getCollider().getCenter(), objectA.getPosition()).lengthSquared() < 15){
+					if(getLength(objectB.getCollider().getCenter(), objectA.getPosition()).lengthSquared() < 250){
 						Collision data  = objectA.getCollider().getCollision(objectB.getCollider());
 						
 						if(data.isIntersecting)
 						{
 							objectA.getCollider().correctPosition(objectB.getCollider(), data);
-							objectB.getCollider().correctPosition(objectA.getCollider(), data);
+							if(objectB.isMovable())
+								objectB.getCollider().correctPosition(objectA.getCollider(), data);
 						}
 					}
 				}//end if(isSolid)
