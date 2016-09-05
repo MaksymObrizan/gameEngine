@@ -26,6 +26,7 @@ public class Player extends Entity{
 	public Player(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
 		super(model, position, rotX, rotY, rotZ, scale);
 		// TODO Auto-generated constructor stub
+		
 		setSolid(true);
 		setMovable(true);
 	}

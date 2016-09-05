@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 import collision.AABB;
@@ -15,6 +17,7 @@ public abstract class Entity extends GameObject{
 	private int textureIndex = 0;
 	
 	public AABB collider;
+	public List<AABB> innerColider;
 	private boolean solid;
 	private boolean movable;
 	
@@ -27,7 +30,7 @@ public abstract class Entity extends GameObject{
 		this.scale = scale;
 		
 
-		this.collider = new AABB(position, new Vector3f(1,1,1));
+		this.collider = new AABB(position, new Vector3f(scale,scale,scale));
 		this.collider.setCenter(position);
 		this.solid = false;
 		this.movable = false;

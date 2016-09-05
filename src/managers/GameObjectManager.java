@@ -1,17 +1,22 @@
 package managers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import entities.Entity;
 import entities.GameObject;
 import entities.Player;
+import fontMeshCreator.FontType;
+import fontMeshCreator.GUIText;
+import fontRendering.TextMaster;
 import models.RawModel;
 import models.TexturedModel;
-import objects.CubeUnit;
-import objects.House;
+import objects.PanzerUnit;
+import objects.Barrack;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
 import renderEngine.OBJLoader;
@@ -19,6 +24,7 @@ import terrain.Terrain;
 import terrain.TerrainTexture;
 import terrain.TerrainTexturePack;
 import textures.ModelTexture;
+import toolbox.Maths;
 
 public class GameObjectManager {
 
@@ -26,8 +32,10 @@ public class GameObjectManager {
 	static Terrain terrain;
 	List<Entity> objects = new ArrayList<Entity>();
 	
+	
 	MasterRenderer renderer;
-	Loader loader;
+	Loader loader = new Loader();
+	
 	ColliderManager colliderMaster = new ColliderManager();
 	
 	//*********
@@ -39,6 +47,9 @@ public class GameObjectManager {
 	RawModel house_model;
 	TexturedModel house_textModel;
 	//*********
+	
+
+	
 	
 	public GameObjectManager() {
 //		createPlayer();
@@ -142,19 +153,19 @@ public class GameObjectManager {
 	
 	public void addCubeUnit()
 	{
-		objects.add(new CubeUnit(staticModel1, new Vector3f(1,1,1), 0, 0,0, 1));
+		objects.add(new PanzerUnit(staticModel1, new Vector3f(1,1,1), 0, 0,0, Maths.getPseudoGaussianRand()*2));
 		System.out.println("addCube");
 	}
 	
 	public void addHouse()
 	{
-		house_texture = new ModelTexture(loader.loadTexture("models/house"));
+		house_texture = new ModelTexture(loader.loadTexture("models/panzer"));
 		house_texture.setShineDamper(100);
 		house_texture.setReflectivity(0);
-		house_model = OBJLoader.loadObjModel("models/house", loader);
+		house_model = OBJLoader.loadObjModel("models/barrack", loader);
 		house_textModel = new TexturedModel(house_model, house_texture);
 		 		
-		objects.add(new House(house_textModel, new Vector3f(1,1,1), 0,0,0, 1,terrain));
+		objects.add(new Barrack(house_textModel, new Vector3f(1,1,1), 0,0,0, 1,terrain));
 		System.out.println("created House");
 	}
 	
@@ -163,4 +174,5 @@ public class GameObjectManager {
 		return objects.size();
 	}
 	
+
 }

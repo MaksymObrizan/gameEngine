@@ -65,12 +65,14 @@ public class AABB {
 		return halfExtent;
 	}
 
-	public void setCenter(Vector3f center) {
+	public AABB setCenter(Vector3f center) {
 		this.center = center;
+		return this;
 	}
 
-	public void setHalfExtent(Vector3f halfExtent) {
+	public AABB setHalfExtent(Vector3f halfExtent) {
 		this.halfExtent = halfExtent;
+		return this;
 	}
 	
 	

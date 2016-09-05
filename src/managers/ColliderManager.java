@@ -42,14 +42,33 @@ public class ColliderManager {
 						}
 					} // end of for(j)
 					if(getLength(objectB.getCollider().getCenter(), objectA.getPosition()).lengthSquared() < 250){
-						Collision data  = objectA.getCollider().getCollision(objectB.getCollider());
-						
-						if(data.isIntersecting)
+						AABB box = null;
+						if(objectB.innerColider != null)
 						{
-							objectA.getCollider().correctPosition(objectB.getCollider(), data);
-							if(objectB.isMovable())
-								objectB.getCollider().correctPosition(objectA.getCollider(), data);
+							for(int k=0; k < objectB.innerColider.size(); k++)
+							{
+								if(box == null) box = objectB.innerColider.get(k);
+								Vector3f lenght1 = getLength(box.getCenter(), objectA.getPosition());
+								Vector3f lenght2 = getLength(objectB.innerColider.get(k).getCenter(), objectA.getPosition());
+								
+								if(lenght1.lengthSquared() > lenght2.lengthSquared())
+								{
+									box = objectB.innerColider.get(k);
+								}
+							}
+						}else
+						{
+							box= objectB.getCollider();
 						}
+							
+							Collision data  = objectA.getCollider().getCollision(box);
+							
+							if(data.isIntersecting)
+							{
+								objectA.getCollider().correctPosition(box, data);
+								if(objectB.isMovable())
+									objectB.getCollider().correctPosition(objectA.getCollider(), data);
+							}
 					}
 				}//end if(isSolid)
 		}//end of for(i)

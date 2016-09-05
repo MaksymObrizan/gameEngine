@@ -18,7 +18,7 @@ import guis.GuiTexture;
 import managers.GameObjectManager;
 import models.RawModel;
 import models.TexturedModel;
-import objects.CubeUnit;
+import objects.PanzerUnit;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
@@ -35,7 +35,7 @@ public class MainGameLoop {
 		// TODO Auto-generated method stub
 
 		DisplayManager.createDisplay();
-		GameObjectManager gameObjectManager = new GameObjectManager().setRenderer(new MasterRenderer()).setLoader(new Loader());
+		GameObjectManager gameObjectManager = new GameObjectManager().setRenderer(new MasterRenderer());
 
 		ModelTexture fernAtlas = new ModelTexture(gameObjectManager.getLoader().loadTexture("leafAtlas"));
 		fernAtlas.setNumberOfRows(2);
@@ -64,8 +64,8 @@ public class MainGameLoop {
 		gameObjectManager.createPlayer();
 	
 		
-		for(int i=0; i<150;i++)
-		gameObjectManager.addCubeUnit();
+//		for(int i=0; i<150;i++)
+//		gameObjectManager.addCubeUnit();
 		
 		for(int i=0; i<5;i++)
 			gameObjectManager.addHouse();

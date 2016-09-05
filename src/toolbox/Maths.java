@@ -80,6 +80,11 @@ public class Maths {
 
 	}
 	
+	public static int getNextInt()
+	{
+		return rand.nextInt();
+	}
+	
 	public static float getPseudoGaussianRand()
 	{
 		int iter = 3;

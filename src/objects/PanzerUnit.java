@@ -10,7 +10,7 @@ import renderEngine.DisplayManager;
 import terrain.Terrain;
 import toolbox.Maths;
 
-public class CubeUnit extends Entity{
+public class PanzerUnit extends Entity{
 
 	private float RUN_SPEED = 10;
 	private static final float TURN_SPEED = 30;
@@ -28,7 +28,7 @@ public class CubeUnit extends Entity{
 	
 	
 	
-	public CubeUnit(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ,
+	public PanzerUnit(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ,
 			float scale) {
 		super(model, position, rotX, rotY, rotZ, scale);
 		
